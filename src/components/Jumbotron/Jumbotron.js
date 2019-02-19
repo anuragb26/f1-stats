@@ -1,6 +1,7 @@
 import React from 'react'
 import { Jumbotron, Button } from 'reactstrap'
 import eatEasy from '../../assets/img/eateasy.png'
+import f1 from '../../assets/img/f1.png'
 import './Jumbotron.scss'
 
 const JumbotronSection = ({ toggleModal }) => {
@@ -10,7 +11,7 @@ const JumbotronSection = ({ toggleModal }) => {
   }
   return (
     <Jumbotron>
-      <img src={eatEasy} width={100} alt="logo" />
+      <img src={f1} width={100} alt="logo" />
       <p className="lead">
         Curated Collection of restaurants for you to offer delightful cuisines!
       </p>
