@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Row, Col, Collapse } from 'reactstrap'
+import { Row, Col } from 'reactstrap'
 import axios from 'axios'
 import Jumbotron from '../../components/Jumbotron/Jumbotron'
 import Loader from '../../components/Loader/Loader'
@@ -56,7 +56,6 @@ class Home extends Component {
     const {
       state: { loading, winnerInfo }
     } = this
-    console.log('products', winnerInfo)
     return (
       <Fragment>
         <Row>
@@ -74,11 +73,11 @@ class Home extends Component {
             <Loader />
           ) : (
             <Fragment>
-              {Object.keys(winnerInfo).map(info => {
+              {Object.keys(winnerInfo).map(year => {
                 return (
-                  <Col sm="12">
+                  <Col key={year} sm="12">
                     <div className="px-4 py-4 my-2 info-wrapper">
-                      <WinnerInfo winnerInfo={info} />
+                      <WinnerInfo year={year} winnerInfo={winnerInfo[year]} />
                     </div>
                   </Col>
                 )
