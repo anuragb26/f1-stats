@@ -11,7 +11,7 @@ const layout = ({ children }) => (
     <Container fluid>
       <ToastContainer autoClose={TOAST_TIMER} />
       <Header />
-      <section className="dashboard-container">{children}</section>
+      <section className="app">{children}</section>
     </Container>
   </Fragment>
 )
