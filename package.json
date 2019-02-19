@@ -34,12 +34,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-<<<<<<< HEAD
-  ]
-=======
   ],
   "devDependencies": {
     "prettier": "1.16.4"
   }
->>>>>>> fc3b833bc6c98e07deb5b18efe2dda4aea177cfd
 }
