@@ -2,14 +2,30 @@ import React, { Component, Fragment } from 'react'
 import { Row, Col } from 'reactstrap'
 import axios from 'axios'
 import Jumbotron from '../../components/Jumbotron/Jumbotron'
-import Modal from '../../components/Modal/Modal'
 import Loader from '../../components/Loader/Loader'
+import WinnerInfo from '../../components/WinnerInfo/WinnerInfo'
+import { getWinnersListApiEndpoint } from '../../constants'
+import f1 from '../../assets/img/f1.png'
+import queryStringUtils from '../../utils/queryStringUtils'
+import './Home.scss'
 
 class Home extends Component {
   state = {
     loading: true,
-    products: [],
-    showModal: false
+    winnerInfo: {},
+    error: false
+  }
+  getWinnerInfo = data => {
+    const {
+      MRData: {
+        StandingsTable: { StandingsLists: winnerList }
+      }
+    } = data
+    const winnerInfo = winnerList.reduce((prevObj, currentWinner) => {
+      prevObj[currentWinner.season] = currentWinner.DriverStandings[0]
+      return prevObj
+    }, {})
+    return winnerInfo
   }
   componentDidMount() {
     this.setState(
@@ -19,66 +35,54 @@ class Home extends Component {
       () => {
         axios
           .get(
-            'https://my-json-server.typicode.com/anuragb26/shopping-cart/productsInCart/'
+            getWinnersListApiEndpoint(
+              queryStringUtils.createQueryString({
+                limit: 11,
+                offset: 55
+              })
+            )
           )
           .then(res => {
             this.setState({
               loading: false,
-              products: res.data
+              winnerInfo: this.getWinnerInfo(res.data)
             })
           })
       }
     )
   }
-  toggleModal = id => {
-    this.setState((prevState, props) => ({
-      showModal: !prevState.showModal
-    }))
-  }
+
   render() {
     const {
-      state: { showModal, loading, products }
+      state: { loading, winnerInfo }
     } = this
-    console.log('products', products)
-    console.log('loading', loading)
+    console.log('products', winnerInfo)
     return (
       <Fragment>
         <Row>
           <Col sm="12">
-            <Jumbotron toggleModal={this.toggleModal} />
-            <Modal
-              isOpen={showModal}
-              heading="Add Restaurant"
-              size="lg"
-              closeHandler={this.toggleModal}
-            >
-              <div className="px-1 py-1 mx-1 my-1">Modal Content</div>
-            </Modal>
+            <Jumbotron>
+              <img src={f1} width={100} alt="logo" />
+              <p className="lead">
+                F1 world champions starting from 2005 until 2015
+              </p>
+            </Jumbotron>
           </Col>
         </Row>
-        <Row>
+        <Row className="winner-list-wrapper">
           {loading ? (
             <Loader />
           ) : (
             <Fragment>
-              <Col
-                sm="4"
-                className="d-flex justify-content-center align-items-center"
-              >
-                <h2>{products[0].p_name || ''}</h2>
-              </Col>
-              <Col
-                sm="4"
-                className="d-flex justify-content-center align-items-center"
-              >
-                <h2>{products[1].p_name || ''}</h2>
-              </Col>
-              <Col
-                sm="4"
-                className="d-flex justify-content-center align-items-center"
-              >
-                <h2>{products[2].p_name || ''}</h2>
-              </Col>
+              {Object.keys(winnerInfo).map(info => {
+                return (
+                  <Col sm="12">
+                    <div className="px-4 py-4 my-2 info-wrapper">
+                      <WinnerInfo winnerInfo={info} />
+                    </div>
+                  </Col>
+                )
+              })}
             </Fragment>
           )}
         </Row>
