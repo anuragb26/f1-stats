@@ -1,12 +1,7 @@
 import { Collapse } from 'reactstrap'
 import React, { Component, Fragment } from 'react'
+import moment from 'moment'
 import './WinnerInfo.scss'
-
-// const winnerInfo = ({ winnerInfo,isOpen }) => {
-//   return (
-
-//     )
-// }
 
 class WinnerInfo extends Component {
   state = {
@@ -25,9 +20,9 @@ class WinnerInfo extends Component {
       },
       state: { collapse }
     } = this
-    console.log('winnerInfo', constructor)
-
-    const info = ` (${driver.nationality},25 years)`
+    const dateOfBirth = moment(driver.dateOfBirth)
+    const age = moment(year).diff(dateOfBirth, 'years')
+    const info = ` (${driver.nationality}, at ${age} years of age)`
     const name = `${driver.givenName} ${driver.familyName}`
     const raceInfo = `Won ${points}  points winning ${wins} races driving for `
     return (
@@ -40,7 +35,11 @@ class WinnerInfo extends Component {
             <div className="winning-year">{year}</div>
             <div className="d-flex flex-column justify-content-center">
               <div className="personal-info px-3 py-2">
-                <a target="_blank" href={`${driver.url}`}>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={`${driver.url}`}
+                >
                   {' '}
                   <strong>{name}</strong>
                 </a>
@@ -49,7 +48,11 @@ class WinnerInfo extends Component {
 
               <p className="race-info px-3 py-2 lead">
                 {raceInfo}{' '}
-                <a target="_blank" href={`${constructor[0].url}`}>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={`${constructor[0].url}`}
+                >
                   {`${constructor[0].name}`}
                 </a>
               </p>
