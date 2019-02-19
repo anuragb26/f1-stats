@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Row, Col } from 'reactstrap'
+import { Row, Col, Collapse } from 'reactstrap'
 import axios from 'axios'
 import Jumbotron from '../../components/Jumbotron/Jumbotron'
 import Loader from '../../components/Loader/Loader'
