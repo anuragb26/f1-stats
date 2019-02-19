@@ -4,7 +4,10 @@ import axios from 'axios'
 import Jumbotron from '../../components/Jumbotron/Jumbotron'
 import Loader from '../../components/Loader/Loader'
 import WinnerInfo from '../../components/WinnerInfo/WinnerInfo'
-import { getWinnersListApiEndpoint } from '../../constants'
+import {
+  getWinnersListApiEndpoint,
+  getRaceWinnersApiEndpoint
+} from '../../constants'
 import f1 from '../../assets/img/f1.png'
 import queryStringUtils from '../../utils/queryStringUtils'
 import './Home.scss'
@@ -13,21 +16,11 @@ class Home extends Component {
   state = {
     loading: true,
     winnerInfo: {},
+    raceTable: {},
     error: false
   }
-  getWinnerInfo = data => {
-    const {
-      MRData: {
-        StandingsTable: { StandingsLists: winnerList }
-      }
-    } = data
-    const winnerInfo = winnerList.reduce((prevObj, currentWinner) => {
-      prevObj[currentWinner.season] = currentWinner.DriverStandings[0]
-      return prevObj
-    }, {})
-    return winnerInfo
-  }
   componentDidMount() {
+    console.log('in did mount')
     this.setState(
       {
         loading: true
@@ -52,9 +45,35 @@ class Home extends Component {
     )
   }
 
+  getWinnerInfo = data => {
+    const {
+      MRData: {
+        StandingsTable: { StandingsLists: winnerList }
+      }
+    } = data
+    const winnerInfo = winnerList.reduce((prevObj, currentWinner) => {
+      prevObj[currentWinner.season] = currentWinner.DriverStandings[0]
+      return prevObj
+    }, {})
+    return winnerInfo
+  }
+  updateRaceTable = year => {
+    console.log('in updateRaceTable')
+    axios.get(getRaceWinnersApiEndpoint(year)).then(res => {
+      const { data } = res
+      console.log('data', data)
+      this.setState((prevState, props) => ({
+        raceTable: {
+          ...prevState.raceTable,
+          [year]: data.MRData.RaceTable.Races
+        }
+      }))
+    })
+  }
+
   render() {
     const {
-      state: { loading, winnerInfo }
+      state: { loading, winnerInfo, raceTable }
     } = this
     return (
       <Fragment>
@@ -74,10 +93,16 @@ class Home extends Component {
           ) : (
             <Fragment>
               {Object.keys(winnerInfo).map(year => {
+                const raceTableForYear = raceTable[year] || []
                 return (
                   <Col key={year} sm="12">
                     <div className="px-4 py-4 my-2 info-wrapper">
-                      <WinnerInfo year={year} winnerInfo={winnerInfo[year]} />
+                      <WinnerInfo
+                        year={year}
+                        winnerInfo={winnerInfo[year]}
+                        raceTable={raceTableForYear}
+                        updateRaceTable={this.updateRaceTable}
+                      />
                     </div>
                   </Col>
                 )

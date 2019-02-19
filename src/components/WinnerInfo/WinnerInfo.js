@@ -1,25 +1,63 @@
 import { Collapse } from 'reactstrap'
-import React, { Component, Fragment } from 'react'
+import React, { PureComponent, Fragment, Component } from 'react'
 import moment from 'moment'
+import Loader from '../Loader/Loader'
 import './WinnerInfo.scss'
 
 class WinnerInfo extends Component {
   state = {
-    collapse: false
+    collapse: false,
+    loading: false
   }
   toggle = () => {
-    this.setState((prevState, props) => ({
-      collapse: !prevState.collapse
-    }))
+    console.log('in toggle')
+    const {
+      props: { raceTable, year, updateRaceTable }
+    } = this
+    if (!raceTable.length) {
+      this.setState(
+        (prevState, props) => ({
+          collapse: !prevState.collapse,
+          loading: true
+        }),
+        () => {
+          updateRaceTable(year)
+        }
+      )
+    } else {
+      this.setState((prevState, props) => ({
+        collapse: !prevState.collapse
+      }))
+    }
+  }
+  componentDidUpdate(prevProps, prevState) {
+    const { loading: prevLoading } = prevState
+    if (prevLoading) {
+      this.setState({
+        loading: false
+      })
+    }
+  }
+  shouldComponentUpdate(nextProps, nextState) {
+    if (
+      !nextState.collapse &&
+      !nextState.loading &&
+      nextProps.raceTable.length === 0
+    ) {
+      return false
+    }
+    return true
   }
   render() {
     const {
       props: {
         year,
-        winnerInfo: { Driver: driver, Constructors: constructor, points, wins }
+        winnerInfo: { Driver: driver, Constructors: constructor, points, wins },
+        raceTable
       },
-      state: { collapse }
+      state: { collapse, loading }
     } = this
+    console.log('raceTable', raceTable)
     const dateOfBirth = moment(driver.dateOfBirth)
     const age = moment(year).diff(dateOfBirth, 'years')
     const info = ` (${driver.nationality}, at ${age} years of age)`
@@ -62,7 +100,13 @@ class WinnerInfo extends Component {
           <span className={`oi oi-minus mx-2 ${!collapse ? 'd-none' : ''}`} />
         </div>
         <Collapse isOpen={collapse}>
-          <div className="collapse-content py-2 px-2">Collapse content</div>
+          {collapse && loading ? (
+            <Loader />
+          ) : raceTable.length ? (
+            <div className="collapse-content py-2 px-2">
+              {raceTable[0].raceName}
+            </div>
+          ) : null}
         </Collapse>
       </Fragment>
     )
