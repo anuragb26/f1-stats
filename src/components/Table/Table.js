@@ -29,7 +29,6 @@ const table = ({ data, columns, paginationOptions, rowClasses }) => {
               {...props.searchProps}
               className="race-table-search-field"
             />
-            <hr />
             <BootstrapTable {...tableProps} />
           </div>
         )

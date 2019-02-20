@@ -167,6 +167,9 @@ class WinnerInfo extends Component {
     const info = ` (${driver.nationality}, at ${age} years of age)`
     const name = `${driver.givenName} ${driver.familyName}`
     const raceInfo = `Won ${points}  points winning ${wins} races driving for `
+    if (raceTable.length) {
+      console.log('raceTable', raceTable)
+    }
     return (
       <Fragment>
         <div
@@ -209,6 +212,10 @@ class WinnerInfo extends Component {
           ) : raceTable.length ? (
             <div className="collapse-content py-2 px-2">
               {/* {raceTable[0].raceName} */}
+              <p className="lead">
+                Table below lists down the winners for every Grand Prix for the
+                year {`${year}`} highlighting races won by {`${name}`}
+              </p>
               <Table
                 data={this.getRelevantRaceTableData()}
                 columns={raceTableColumns}
