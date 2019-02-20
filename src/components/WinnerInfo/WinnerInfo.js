@@ -1,5 +1,5 @@
 import { Collapse } from 'reactstrap'
-import React, { PureComponent, Fragment, Component } from 'react'
+import React, { Fragment, Component } from 'react'
 import moment from 'moment'
 import Loader from '../Loader/Loader'
 import './WinnerInfo.scss'
@@ -10,7 +10,6 @@ class WinnerInfo extends Component {
     loading: false
   }
   toggle = () => {
-    console.log('in toggle')
     const {
       props: { raceTable, year, updateRaceTable }
     } = this
@@ -39,11 +38,9 @@ class WinnerInfo extends Component {
     }
   }
   shouldComponentUpdate(nextProps, nextState) {
-    if (
-      !nextState.collapse &&
-      !nextState.loading &&
-      nextProps.raceTable.length === 0
-    ) {
+    const { collapse, loading } = nextState
+    const { raceTable } = nextProps
+    if (!collapse && !loading && !raceTable.length) {
       return false
     }
     return true
