@@ -5,14 +5,15 @@ import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit'
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css'
 import './Table.scss'
 
-const table = ({ data, columns, paginationOptions }) => {
+const table = ({ data, columns, paginationOptions, rowClasses }) => {
   const commonProps = {
     bootstrap4: true,
     classes: 'mt-3',
-    rowClasses: 'table__row',
+    // rowClasses: 'table__row',
     headerClasses: 'table__header',
     bordered: false,
-    pagination: paginationFactory(paginationOptions)
+    pagination: paginationFactory(paginationOptions),
+    rowClasses
   }
   return (
     <ToolkitProvider keyField="id" data={data} columns={columns} search>

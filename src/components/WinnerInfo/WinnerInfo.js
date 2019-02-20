@@ -112,8 +112,7 @@ class WinnerInfo extends Component {
     const {
       props: { raceTable, year }
     } = this
-    // console.log('raceTable',raceTable)
-    const tableData = raceTable.map((race, index) => {
+    return raceTable.map((race, index) => {
       const { Results, date, raceName, url: raceUrl } = race
       const {
         Constructor: { name: constructorName },
@@ -138,8 +137,20 @@ class WinnerInfo extends Component {
         points
       }
     })
-    console.log('tableData', tableData)
-    return tableData
+  }
+  getRowClasses = (row, rowIndex) => {
+    const {
+      props: {
+        winnerInfo: {
+          Driver: { driverId }
+        }
+      }
+    } = this
+    const classes = ['table__row']
+    if (row.driverId === driverId) {
+      classes.push('table__row--champion')
+    }
+    return classes.join(' ')
   }
 
   render() {
@@ -202,6 +213,7 @@ class WinnerInfo extends Component {
                 data={this.getRelevantRaceTableData()}
                 columns={raceTableColumns}
                 paginationOptions={{ sizePerPage: 6, hideSizePerPage: true }}
+                rowClasses={this.getRowClasses}
               />
             </div>
           ) : null}

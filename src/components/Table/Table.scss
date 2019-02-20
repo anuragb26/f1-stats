@@ -16,6 +16,10 @@ $color-97: #888f97;
       min-height: 60px;
     }
   }
+  .table__row--champion {
+    background-color: #efe9e9;
+    opacity: 0.9;
+  }
   .table__header {
     background-color: $table-head-bg;
     th {
