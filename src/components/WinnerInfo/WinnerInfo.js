@@ -2,8 +2,71 @@ import { Collapse } from 'reactstrap'
 import React, { Fragment, Component } from 'react'
 import moment from 'moment'
 import Loader from '../Loader/Loader'
+import Table from '../Table/Table'
 import './WinnerInfo.scss'
 
+export const createDateFromTimeStamp = (cell, row, rowIndex) =>
+  cell
+    ? new Date(cell).toLocaleString('en-us', {
+        month: 'short',
+        year: 'numeric',
+        day: '2-digit'
+      })
+    : ''
+
+export const createHyperLink = (cell, row, rowIndex, { urlKey }) => (
+  <a target="_blank" rel="noopener noreferrer" href={`${row[urlKey]}`}>
+    {cell}
+  </a>
+)
+const raceTableColumns = [
+  {
+    dataField: 'id',
+    text: 'required',
+    hidden: true
+  },
+  {
+    dataField: 'driverName',
+    text: 'Driver',
+    formatter: createHyperLink,
+    formatExtraData: {
+      urlKey: 'driverUrl'
+    }
+  },
+  {
+    dataField: 'raceName',
+    text: 'Race',
+    formatter: createHyperLink,
+    formatExtraData: {
+      urlKey: 'raceUrl'
+    }
+  },
+  {
+    dataField: 'constructorName',
+    text: 'Constructor'
+  },
+  {
+    dataField: 'laps',
+    text: 'Laps',
+    sort: true
+  },
+  {
+    dataField: 'points',
+    text: 'Points',
+    sort: true
+  },
+  {
+    dataField: 'raceTime',
+    text: 'Race Time',
+    sort: true
+  },
+  {
+    dataField: 'date',
+    text: 'Date',
+    sort: true,
+    formatter: createDateFromTimeStamp
+  }
+]
 class WinnerInfo extends Component {
   state = {
     collapse: false,
@@ -45,6 +108,40 @@ class WinnerInfo extends Component {
     }
     return true
   }
+  getRelevantRaceTableData = () => {
+    const {
+      props: { raceTable, year }
+    } = this
+    // console.log('raceTable',raceTable)
+    const tableData = raceTable.map((race, index) => {
+      const { Results, date, raceName, url: raceUrl } = race
+      const {
+        Constructor: { name: constructorName },
+        Driver: { driverId, familyName, givenName, url: driverUrl },
+        Time: { time: raceTime },
+        laps,
+        grid,
+        points
+      } = Results[0]
+      return {
+        id: `${year}-${index}`,
+        driverName: `${givenName} ${familyName}`,
+        driverUrl,
+        driverId,
+        date,
+        raceName,
+        raceUrl,
+        constructorName,
+        raceTime,
+        laps,
+        grid,
+        points
+      }
+    })
+    console.log('tableData', tableData)
+    return tableData
+  }
+
   render() {
     const {
       props: {
@@ -54,7 +151,6 @@ class WinnerInfo extends Component {
       },
       state: { collapse, loading }
     } = this
-    console.log('raceTable', raceTable)
     const dateOfBirth = moment(driver.dateOfBirth)
     const age = moment(year).diff(dateOfBirth, 'years')
     const info = ` (${driver.nationality}, at ${age} years of age)`
@@ -101,7 +197,12 @@ class WinnerInfo extends Component {
             <Loader />
           ) : raceTable.length ? (
             <div className="collapse-content py-2 px-2">
-              {raceTable[0].raceName}
+              {/* {raceTable[0].raceName} */}
+              <Table
+                data={this.getRelevantRaceTableData()}
+                columns={raceTableColumns}
+                paginationOptions={{ sizePerPage: 6, hideSizePerPage: true }}
+              />
             </div>
           ) : null}
         </Collapse>

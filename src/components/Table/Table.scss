@@ -1,0 +1,67 @@
+$white: #fff;
+$color-e6: #d3d6e6;
+$table-head-bg: #f6f7f8;
+$headings-color: #222e3a;
+$color-97: #888f97;
+
+.react-bootstrap-table {
+  .table {
+    background-color: $white;
+    border: 1px solid $color-e6;
+  }
+  .table__row {
+    border: 1px solid $color-e6;
+    td {
+      vertical-align: middle;
+      min-height: 60px;
+    }
+  }
+  .table__header {
+    background-color: $table-head-bg;
+    th {
+      font-weight: normal;
+      color: $headings-color;
+      border-width: 1px;
+    }
+  }
+  .table__header-cell {
+    font-weight: normal;
+    color: $headings-color;
+    border: none;
+  }
+  .table__data-cell {
+    border: none;
+  }
+  .data-cell--last {
+    color: $color-97;
+  }
+  .table__sort {
+    position: relative;
+    .sort-asc {
+      position: absolute;
+      top: -5px;
+    }
+    .sort-desc {
+      position: absolute;
+      top: 1px;
+      left: 0;
+    }
+  }
+  .table__header-cell {
+    .caret {
+      display: inline-block;
+      width: 0;
+      height: 0;
+      vertical-align: middle;
+      border-right: 4px solid transparent;
+      border-left: 4px solid transparent;
+    }
+    .sort-desc .caret {
+      border-top: 4px dashed;
+    }
+    .sort-asc .caret {
+      border-top: 0;
+      border-bottom: 4px dashed;
+    }
+  }
+}
