@@ -1,5 +1,6 @@
 import { Collapse } from 'reactstrap'
 import React, { Fragment, Component } from 'react'
+import filterFactory, { textFilter } from 'react-bootstrap-table2-filter'
 import moment from 'moment'
 import Loader from '../Loader/Loader'
 import Table from '../Table/Table'
@@ -29,6 +30,7 @@ const raceTableColumns = [
     dataField: 'driverName',
     text: 'Driver',
     formatter: createHyperLink,
+    filter: textFilter(),
     formatExtraData: {
       urlKey: 'driverUrl'
     }
@@ -43,27 +45,36 @@ const raceTableColumns = [
   },
   {
     dataField: 'constructorName',
+    filter: textFilter(),
     text: 'Constructor'
   },
   {
     dataField: 'laps',
     text: 'Laps',
-    sort: true
+    sort: true,
+    headerClasses: 'd-none d-sm-table-cell',
+    classes: 'd-none d-sm-table-cell'
   },
   {
     dataField: 'points',
     text: 'Points',
-    sort: true
+    sort: true,
+    headerClasses: 'd-none d-sm-table-cell',
+    classes: 'd-none d-sm-table-cell'
   },
   {
     dataField: 'raceTime',
     text: 'Race Time',
-    sort: true
+    sort: true,
+    headerClasses: 'd-none d-md-table-cell',
+    classes: 'd-none d-md-table-cell'
   },
   {
     dataField: 'date',
     text: 'Date',
     sort: true,
+    headerClasses: 'd-none d-sm-table-cell',
+    classes: 'd-none d-sm-table-cell',
     formatter: createDateFromTimeStamp
   }
 ]
@@ -167,9 +178,6 @@ class WinnerInfo extends Component {
     const info = ` (${driver.nationality}, at ${age} years of age)`
     const name = `${driver.givenName} ${driver.familyName}`
     const raceInfo = `Won ${points}  points winning ${wins} races driving for `
-    if (raceTable.length) {
-      console.log('raceTable', raceTable)
-    }
     return (
       <Fragment>
         <div
@@ -221,6 +229,7 @@ class WinnerInfo extends Component {
                 columns={raceTableColumns}
                 paginationOptions={{ sizePerPage: 6, hideSizePerPage: true }}
                 rowClasses={this.getRowClasses}
+                filter={filterFactory()}
               />
             </div>
           ) : null}

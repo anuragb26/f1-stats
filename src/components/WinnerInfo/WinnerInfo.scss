@@ -22,3 +22,17 @@
     font-size: 1.2em;
   }
 }
+
+@media (max-width: 576px) {
+  .winner-info-content {
+    .driver-info {
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .winning-year {
+      width: 65px;
+      height: 48px;
+    }
+  }
+}
