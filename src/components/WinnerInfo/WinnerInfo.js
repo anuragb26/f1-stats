@@ -221,8 +221,7 @@ class WinnerInfo extends Component {
             <div className="collapse-content py-2 px-2">
               {/* {raceTable[0].raceName} */}
               <p className="lead">
-                Table below lists down the winners for every Grand Prix for the
-                year {`${year}`} highlighting races won by {`${name}`}
+                F1 races in {`${year}`} alongwith their winners
               </p>
               <Table
                 data={this.getRelevantRaceTableData()}

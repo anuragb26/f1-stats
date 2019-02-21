@@ -77,13 +77,13 @@ class Home extends Component {
     } = this
     return (
       <Fragment>
-        <Row>
+        <Row className="jumbotron-wrapper">
           <Col sm="12">
             <Jumbotron>
-              <img src={f1} width={100} alt="logo" />
-              <p className="lead">
-                F1 world champions starting from 2005 until 2015
-              </p>
+              <div className="content-wrapper">
+                <img src={f1} width={100} alt="logo" />
+                <p className="lead">F1 world champions from 2005 until 2015</p>
+              </div>
             </Jumbotron>
           </Col>
         </Row>

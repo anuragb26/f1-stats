@@ -1,3 +1,11 @@
+.jumbotron-wrapper {
+  .content-wrapper {
+    transform: translateY(-10%);
+    text-align: center;
+    min-height: 200px;
+  }
+}
+
 .winner-list-wrapper {
   width: 90%;
   margin: 0 auto;
@@ -16,3 +24,9 @@
     width: 100%;
   }
 }
+
+// @include media-breakpoint-down(xs) {
+//   .winner-list-wrapper {
+//     width: 100%;
+//   }
+// }
