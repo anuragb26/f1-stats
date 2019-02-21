@@ -32,22 +32,22 @@ Local Setup:
 
 ## Tech Stack
 
-Reactjs (scaffolding -> create-react-app) ,React Router v4
+Reactjs (scaffolding -> create-react-app) ,React Router v4  
 Styling -> SCSS, Bootstrap4(Reactstrap library based on bootstrap4 -> https://reactstrap.github.io/ )
 
 ## Folder Structure.
 
-src/containers -> React Components mapped to the routes...can be later used for redux store.
-src/components -> React Components
-src/assets -> Images,svgs and fonts(whichever necessary)
-src/hoc -> Higher Order Components
-src/constants -> Config Variables.
-src/styles -> SASS based Styles over-riding bootstrap variables wherever necessary
+src/containers -> React Components mapped to the routes...can be later used for redux store.  
+src/components -> React Components  
+src/assets -> Images,svgs and fonts(whichever necessary)  
+src/hoc -> Higher Order Components  
+src/constants -> Config Variables.  
+src/styles -> SASS based Styles over-riding bootstrap variables wherever necessary  
 src/utility -> Files for Helper functions.
 
 ## Code formatter
 
-prettier -> (https://prettier.io/)
+prettier -> (https://prettier.io/)  
 Configured a pre-commit hook in package.json which will automatically format the changed files as per the
 config set in .prettierrc
 
