@@ -5,6 +5,17 @@ body {
   padding: 0;
   font-family: 'Lato', 'Arial', sans-serif;
   background-color: $background-color;
+
+  header {
+    position: fixed;
+    min-height: 60px;
+    z-index: 10;
+    top: 0;
+    width: 100%;
+  }
+  .app {
+    min-height: 95vh;
+  }
 }
 
 @include media-breakpoint-down(xs) {
