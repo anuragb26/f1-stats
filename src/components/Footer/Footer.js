@@ -10,8 +10,14 @@ const footer = () => (
         className="bg-dark text-white mt-3 py-3 d-flex justify-content-center align-items-center"
       >
         Copyright{' '}
-        <img src={copyright} height={20} width={20} className="mx-2" /> Anurag
-        Bajaj
+        <img
+          src={copyright}
+          height={20}
+          width={20}
+          className="mx-2"
+          alt="copyright"
+        />{' '}
+        Anurag Bajaj
       </Col>
     </Row>
   </footer>
