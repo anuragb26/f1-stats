@@ -5,6 +5,7 @@ import moment from 'moment'
 import Loader from '../Loader/Loader'
 import DriverInfo from '../DriverInfo/DriverInfo'
 import Table from '../Table/Table'
+import { RECORDS_PER_PAGE } from '../../constants'
 import { raceTableColumns } from './helpers'
 import './WinnerInfo.scss'
 
@@ -103,9 +104,9 @@ class WinnerInfo extends Component {
       },
       state: { collapse, loading }
     } = this
-    const dateOfBirth = moment(driver.dateOfBirth)
-    const age = moment(year).diff(dateOfBirth, 'years')
-    const info = ` (${driver.nationality}, at ${age} years of age)`
+    const dateOfBirth = new Date(moment(driver.dateOfBirth))
+    const age = moment(new Date(year)).diff(dateOfBirth, 'years')
+    const info = ` (${driver.nationality}, Age: ${age})`
     const name = `${driver.givenName} ${driver.familyName}`
     const raceInfo = `Won ${points}  points winning ${wins} races driving for `
     return (
@@ -130,14 +131,16 @@ class WinnerInfo extends Component {
             <Loader />
           ) : raceTable.length ? (
             <div className="collapse-content py-2 px-2">
-              {/* {raceTable[0].raceName} */}
               <p className="lead">
                 F1 races in {`${year}`} along with their winners
               </p>
               <Table
                 data={this.getRelevantRaceTableData()}
                 columns={raceTableColumns}
-                paginationOptions={{ sizePerPage: 6, hideSizePerPage: true }}
+                paginationOptions={{
+                  sizePerPage: RECORDS_PER_PAGE,
+                  hideSizePerPage: true
+                }}
                 rowClasses={this.getRowClasses}
                 filter={filterFactory()}
               />

@@ -1,68 +1,57 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Schema Service API
 
-## Available Scripts
+This project contains UI codebase for the FinCompare Front-end Challenge
 
-In the project directory, you can run:
+## Public url
 
-### `npm start`
+https://f1-stats.netlify.com/
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Flow
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+1)On page mount, show a list that shows the F1 world champions with relevant information starting from 2005 until 2015
+2)Click on any element to open the collapsible content which has the winners of all races for that year in tabular format
+3)The row where the winner is the same as the F1 of that year is highlighted.
+4)Also added Filter functionality for driver name and constructor name.
 
-### `npm test`
+## Getting Started
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Local Setup:
 
-### `npm run build`
+1. npm install
+2. npm start
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   This will start the server at http://localhost:3000/
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## Prerequisites
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1)npm
+2)node
 
-### `npm run eject`
+## Tech Stack
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Reactjs,React Router v4
+Styling -> SCSS, Bootstrap4(Reactstrap library based on bootstrap4 -> https://reactstrap.github.io/ )
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Folder Structure.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+src/containers -> React Components mapped to the routes...can be later used for redux store.
+src/components -> React Components
+src/assets -> Images,svgs and fonts(whichever necessary)
+src/hoc -> Higher Order Components
+src/constants -> Config Variables.
+src/styles -> SASS based Styles over-riding bootstrap variables wherever necessary
+src/utility -> Files for Helper functions.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Code formatter
 
-## Learn More
+prettier -> (https://prettier.io/)
+Configured a pre-commit hook in package.json which will automatically format the changed files as per the
+config set in .prettierrc
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Commit Messages
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+https://seesparkbox.com/foundry/semantic_commit_messages
 
-### Code Splitting
+## Author
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- **Anurag Bajaj** (anuragb26@gmail.com)
