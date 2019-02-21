@@ -13,11 +13,11 @@
   width: 90%;
   margin: 0 auto;
   .info-wrapper {
-    border: 1px solid #eee;
-    box-shadow: 1px 2px 3px #3c4d5a;
+    border: 1px solid #{$color-ee};
+    box-shadow: 1px 2px 3px #{$color-5a};
     cursor: pointer;
     &:hover {
-      box-shadow: 4px 4px 3px #3c4d5a;
+      box-shadow: 4px 4px 3px #{$color-5a};
     }
   }
 }

@@ -5,7 +5,14 @@
 
 // // Color system
 
-// $white:    #fff !default;
+$color-ee: #eee;
+$color-cc: #ccc;
+$color-5a: #3c4d5a;
+$color-cc: #ccc;
+$color-e6: #d3d6e6;
+$color-e9: #efe9e9;
+$color-97: #888f97;
+// $white:    #fff;
 // $gray-100: #f8f9fa !default;
 // $gray-200: #e9ecef !default;
 // $gray-300: #dee2e6 !default;
@@ -291,7 +298,7 @@
 // $headings-font-family:        null !default;
 // $headings-font-weight:        500 !default;
 // $headings-line-height:        1.2 !default;
-// $headings-color:              null !default;
+$headings-color: #222e3a;
 
 // $display1-size:               6rem !default;
 // $display2-size:               5.5rem !default;
@@ -333,7 +340,6 @@
 
 // // Tables
 // //
-// // Customizes the `.table` component with basic values, each used across all table variations.
 
 // $table-cell-padding:          .75rem !default;
 // $table-cell-padding-sm:       .3rem !default;
@@ -348,7 +354,7 @@
 // $table-border-width:          $border-width !default;
 // $table-border-color:          $border-color !default;
 
-// $table-head-bg:               $gray-200 !default;
+$table-head-bg: #f6f7f8;
 // $table-head-color:            $gray-700 !default;
 
 // $table-dark-color:            $white !default;

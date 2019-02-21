@@ -1,5 +1,6 @@
 import React from 'react'
 import './DriverInfo.scss'
+
 const driverInfo = ({ year, driver, name, info, raceInfo, constructor }) => (
   <div className="driver-info d-flex">
     <div className="winning-year">{year}</div>

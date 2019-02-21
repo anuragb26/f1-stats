@@ -1,6 +1,9 @@
 ## Schema Service API
 
+## FinCompare Front-end challenge
+
 This project contains UI codebase for the FinCompare Front-end Challenge
+(https://github.com/fincompare/frontend-challenge)
 
 ## Public url
 
