@@ -20,7 +20,6 @@ class Home extends Component {
     error: false
   }
   componentDidMount() {
-    console.log('in did mount')
     this.setState(
       {
         loading: true
@@ -58,10 +57,8 @@ class Home extends Component {
     return winnerInfo
   }
   updateRaceTable = year => {
-    console.log('in updateRaceTable')
     axios.get(getRaceWinnersApiEndpoint(year)).then(res => {
       const { data } = res
-      console.log('data', data)
       this.setState((prevState, props) => ({
         raceTable: {
           ...prevState.raceTable,

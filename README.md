@@ -10,7 +10,7 @@ https://f1-stats.netlify.com/
 
 1)On page mount, show a list that shows the F1 world champions with relevant information starting from 2005 until 2015
 2)Click on any element to open the collapsible content which has the winners of all races for that year in tabular format
-3)The row where the winner is the same as the F1 of that year is highlighted.
+3)The row where the winner is the same as the world champion of that year is highlighted.
 4)Also added Filter functionality for driver name and constructor name.
 
 ## Getting Started
@@ -29,7 +29,7 @@ Local Setup:
 
 ## Tech Stack
 
-Reactjs,React Router v4
+Reactjs (scaffolding -> create-react-app) ,React Router v4
 Styling -> SCSS, Bootstrap4(Reactstrap library based on bootstrap4 -> https://reactstrap.github.io/ )
 
 ## Folder Structure.
