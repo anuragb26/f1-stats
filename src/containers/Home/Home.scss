@@ -1,3 +1,6 @@
+// Core variables and mixins
+@import '../../styles/core';
+
 .jumbotron-wrapper {
   .content-wrapper {
     transform: translateY(-10%);
@@ -19,14 +22,8 @@
   }
 }
 
-@media (max-width: 576px) {
+@include media-breakpoint-down(xs) {
   .winner-list-wrapper {
     width: 100%;
   }
 }
-
-// @include media-breakpoint-down(xs) {
-//   .winner-list-wrapper {
-//     width: 100%;
-//   }
-// }

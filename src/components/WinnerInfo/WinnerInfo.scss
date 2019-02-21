@@ -1,3 +1,6 @@
+// Core variables and mixins
+@import '../../styles/core';
+
 .winner-info-content {
   .winning-year {
     border: 1px solid #ccc;
@@ -23,7 +26,7 @@
   }
 }
 
-@media (max-width: 576px) {
+@include media-breakpoint-down(xs) {
   .winner-info-content {
     .driver-info {
       align-items: center;

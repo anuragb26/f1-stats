@@ -10,7 +10,6 @@ export const createDateFromTimeStamp = (cell, row, rowIndex) =>
   cell
     ? new Date(cell).toLocaleString('en-us', {
         month: 'short',
-        year: 'numeric',
         day: '2-digit'
       })
     : ''
@@ -221,7 +220,7 @@ class WinnerInfo extends Component {
             <div className="collapse-content py-2 px-2">
               {/* {raceTable[0].raceName} */}
               <p className="lead">
-                F1 races in {`${year}`} alongwith their winners
+                F1 races in {`${year}`} along with their winners
               </p>
               <Table
                 data={this.getRelevantRaceTableData()}

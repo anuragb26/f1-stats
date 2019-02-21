@@ -1,3 +1,6 @@
+// Core variables and mixins
+@import '../../styles/core';
+
 $white: #fff;
 $color-e6: #d3d6e6;
 $table-head-bg: #f6f7f8;
@@ -5,6 +8,7 @@ $headings-color: #222e3a;
 $color-97: #888f97;
 
 .react-bootstrap-table {
+  min-height: 400px;
   .table {
     background-color: $white;
     border: 1px solid $color-e6;
@@ -41,7 +45,7 @@ $color-97: #888f97;
   }
 }
 
-@media (max-width: 576px) {
+@include media-breakpoint-down(xs) {
   .react-bootstrap-table {
     .table {
       .table__header input {
