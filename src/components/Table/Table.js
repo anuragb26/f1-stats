@@ -4,7 +4,14 @@ import paginationFactory from 'react-bootstrap-table2-paginator'
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css'
 import './Table.scss'
 
-const table = ({ data, columns, paginationOptions, rowClasses, filter }) => {
+const table = ({
+  data,
+  columns,
+  paginationOptions,
+  rowClasses,
+  defaultSorted,
+  filter
+}) => {
   const tableProps = {
     keyField: 'id',
     data,
@@ -15,7 +22,8 @@ const table = ({ data, columns, paginationOptions, rowClasses, filter }) => {
     rowClasses,
     bordered: false,
     pagination: paginationFactory(paginationOptions),
-    filter
+    filter,
+    defaultSorted
   }
   return <BootstrapTable {...tableProps} />
 }

@@ -142,6 +142,12 @@ class WinnerInfo extends Component {
                   hideSizePerPage: true
                 }}
                 rowClasses={this.getRowClasses}
+                defaultSorted={[
+                  {
+                    dataField: 'date',
+                    order: 'asc'
+                  }
+                ]}
                 filter={filterFactory()}
               />
             </div>
