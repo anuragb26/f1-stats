@@ -1,0 +1,31 @@
+// Core variables and mixins
+@import '../../styles/core';
+
+.driver-info {
+  .winning-year {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 12px;
+    border-radius: 50%;
+    color: white;
+    background-color: grey;
+    font-size: 1.3rem;
+    height: 60px;
+    transition: all 1s ease-in-out;
+  }
+  .personal-info {
+    font-size: 1.2rem;
+  }
+}
+@include media-breakpoint-down(xs) {
+  .driver-info {
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    .winning-year {
+      width: 80px;
+      height: 58px;
+    }
+  }
+}
