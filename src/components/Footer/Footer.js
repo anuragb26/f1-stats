@@ -17,7 +17,13 @@ const footer = () => (
           className="mx-2"
           alt="copyright"
         />{' '}
-        Anurag Bajaj
+        <a
+          href="http://anuragbajaj.me"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Anurag Bajaj{' '}
+        </a>
       </Col>
     </Row>
   </footer>
